@@ -1,5 +1,10 @@
 bin_PROGRAMS=fwup
-fwup_SOURCES=cfgfile.c \
+AM_YFLAGS=-d
+BUILT_SOURCES=cfg_parser.h
+fwup_SOURCES= \
+	cfg_parser.y
+	cfg_scanner.l
+	cfgfile.c \
 	fatfs.c \
 	functions.c \
 	fwfile.c \

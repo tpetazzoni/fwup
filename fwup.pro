@@ -28,7 +28,9 @@ SOURCES += \
     3rdparty/fatfs/src/option/unicode.c \
     src/fwup_genkeys.c \
     src/fwup_sign.c \
-    src/fwup_verify.c
+    src/fwup_verify.c \
+    src/cfg_file.c \
+    src/cfg_node.c
 
 LIBS += -lconfuse -larchive -lsodium
 
@@ -51,7 +53,11 @@ HEADERS += \
     3rdparty/fatfs/src/diskio.h \
     src/fwup_genkeys.h \
     src/fwup_sign.h \
-    src/fwup_verify.h
+    src/fwup_verify.h \
+    src/cfg_scanner.l \
+    src/cfg_parser.y \
+    src/cfg_file.h \
+    src/cfg_node.h
 
 OTHER_FILES += \
     fwupdate.conf \

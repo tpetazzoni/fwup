@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-#include "cfgfile.h"
+#include "cfg_file.h"
 #include "mbr.h"
 #include "functions.h"
 #include "util.h"
@@ -280,7 +280,7 @@ cfg_opt_t opts[] = {
     CFG_END()
 };
 
-int cfgfile_parse_file(const char *filename, cfg_t **cfg)
+int cfgfile_parse_file(const char *filename, struct cfg_node **cfg)
 {
     if (fwup_verbose) {
         extern char **environ;
@@ -338,7 +338,7 @@ int archive_read_all_data(struct archive *a, char *buffer, ssize_t total_size)
 
 int cfgfile_parse_fw_ae(struct archive *a,
                         struct archive_entry *ae,
-                        cfg_t **cfg,
+                        struct cfg_node **cfg,
                         unsigned char *meta_conf_signature,
                         const unsigned char *public_key)
 {
@@ -382,7 +382,7 @@ cleanup:
     return rc;
 }
 
-int cfgfile_parse_fw_meta_conf(const char *filename, cfg_t **cfg, const unsigned char *public_key)
+int cfgfile_parse_fw_meta_conf(const char *filename, struct cfg_node **cfg, const unsigned char *public_key)
 {
     int rc = 0;
     unsigned char *meta_conf_signature = NULL;
@@ -422,9 +422,4 @@ cleanup:
         free(meta_conf_signature);
 
     return rc;
-}
-
-void cfgfile_free(cfg_t *cfg)
-{
-    cfg_free(cfg);
 }

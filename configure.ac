@@ -1,4 +1,4 @@
-AC_INIT([fwup], [0.3.0], [fhunleth@troodon-software.com])
+AC_INIT([fwup], [0.5.0], [fhunleth@troodon-software.com])
 AC_CONFIG_SRCDIR([src/fwup_metadata.c])
 AC_CONFIG_HEADERS([config.h])
 
@@ -6,6 +6,8 @@ AM_INIT_AUTOMAKE([-Wall -Werror foreign subdir-objects])
 
 # Checks for programs.
 AC_PROG_CC
+AM_PROG_LEX
+AC_PROG_YACC
 
 # Checks for header files.
 AC_CHECK_HEADERS([fcntl.h inttypes.h malloc.h stddef.h stdint.h stdlib.h string.h unistd.h])
@@ -25,7 +27,6 @@ AC_SYS_LARGEFILE
 AC_FUNC_MALLOC
 AC_CHECK_FUNCS([memset setenv strdup strtoul])
 
-AC_CHECK_LIB([confuse], [cfg_init], [], [ AC_MSG_ERROR([Could not find libconfuse]) ])
 AC_CHECK_LIB([archive], [archive_read_new], [], [ AC_MSG_ERROR([Could not find libarchive]) ])
 AC_CHECK_LIB([sodium], [crypto_generichash_init], [], [ AC_MSG_ERROR([Could not find libsodium]) ])
 
