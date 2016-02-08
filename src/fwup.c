@@ -14,7 +14,6 @@
  * limitations under the License.
  */
 
-#include <err.h>
 #include <errno.h>
 #include <fcntl.h>
 #include <getopt.h>
@@ -411,7 +410,9 @@ int main(int argc, char **argv)
                      mmc_device_path);
             }
         }
+#ifdef HAVE_FCNTL
         (void) fcntl(output_fd, F_SETFD, FD_CLOEXEC);
+#endif
 
         if (fwup_apply(input_firmware,
                        task,

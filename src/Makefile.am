@@ -18,6 +18,7 @@ fwup_SOURCES=cfgfile.c \
 	mbr.c \
 	mmc_linux.c \
 	mmc_osx.c \
+	mmc_windows.c \
 	util.c \
 	cfgfile.h \
 	fatfs.h \
@@ -47,9 +48,14 @@ fwup_SOURCES+=../3rdparty/memstream.c \
 	../3rdparty/memstream.h
 endif
 
+if !HAS_STRPTIME
+fwup_SOURCES+=../3rdparty/strptime.c
+endif
+
 EXTRA_DIST=../3rdparty/fatfs/src/option/ccsbcs.c \
 	../3rdparty/memstream.h \
-	../3rdparty/memstream.c
+	../3rdparty/memstream.c \
+	../3rdparty/strptime.c
 
 
 fwup_CFLAGS = -Wall -D_FILE_OFFSET_BITS=64
@@ -60,7 +66,7 @@ CLEANFILES = $(man_MANS)
 EXTRA_DIST += fwup.h2m
 
 fwup.1: fwup fwup.h2m
-	$(HELP2MAN) --output=$@ --no-info --include fwup.h2m \
+	$(HELP2MAN) --no-discard-stderr --output=$@ --no-info --include fwup.h2m \
 	    -n "configurable embedded Linux firmware update creator and runner" \
 	    fwup
 else

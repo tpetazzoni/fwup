@@ -495,6 +495,8 @@ performance can only be so fast on some systems.
 This utility contains source code with various licenses. The bulk of the code is
 licensed with the Apache 2.0 license which can be found in the `LICENSE` file.
 
+All 3rd party source code can be found in the `3rdparty` directory.
+
 The FAT filesystem code (FatFs) comes from http://elm-chan.org/fsw/ff/00index_e.html
 and has the following license:
 
@@ -513,4 +515,7 @@ developments under license policy of following terms.
 
 On systems without the function open_memstream(), code from
 http://piumarta.com/software/memstream/ is included. It is distributed under
-the MIT license
+the MIT license.
+
+On systems without the function strptime(), a version from Google is
+included that is distributed under the Apache 2.0 license.

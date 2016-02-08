@@ -32,3 +32,4 @@ tests/15M.bin
 /ltmain.sh
 /m4
 src/fwup.1
+fwup.exe

@@ -20,6 +20,7 @@
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdint.h>
+#include "config.h"
 
 struct tm;
 
@@ -56,5 +57,20 @@ extern bool fwup_verbose;
 #define ONE_KiB  (1024LL)
 #define ONE_MiB  (1024 * ONE_KiB)
 #define ONE_GiB  (1024 * ONE_MiB)
+
+#ifdef HAVE_ERR_H
+#include <err.h>
+#else
+// If err.h doesn't exist, define substitutes.
+#define err(STATUS, MSG, ...) do { fprintf(stderr, "fwup: " MSG "\n", ## __VA_ARGS__); exit(STATUS); } while (0)
+#define errx(STATUS, MSG, ...) do { fprintf(stderr, "fwup: " MSG "\n", ## __VA_ARGS__); exit(STATUS); } while (0)
+#define warn(MSG, ...) do { fprintf(stderr, "fwup: " MSG "\n", ## __VA_ARGS__); } while (0)
+#define warnx(MSG, ...) do { fprintf(stderr, "fwup: " MSG "\n", ## __VA_ARGS__); } while (0)
+#endif
+
+#ifndef HAVE_STRPTIME
+// Provide a prototype for strptime if using the version in the 3rdparty directory.
+char* strptime(const char *buf, const char *fmt, struct tm *tm);
+#endif
 
 #endif // UTIL_H

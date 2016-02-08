@@ -15,7 +15,7 @@ AC_PATH_PROG([HELP2MAN], help2man)
 AM_CONDITIONAL([HAVE_HELP2MAN], [test -n "$HELP2MAN"])
 
 # Checks for header files
-AC_CHECK_HEADERS([fcntl.h inttypes.h malloc.h stddef.h stdint.h stdlib.h string.h unistd.h archive.h confuse.h])
+AC_CHECK_HEADERS([fcntl.h inttypes.h malloc.h stddef.h stdint.h stdlib.h string.h unistd.h err.h archive.h confuse.h])
 
 # Checks for typedefs, structures, and compiler characteristics
 AC_TYPE_INT64_T
@@ -31,8 +31,9 @@ AC_PROG_CC_C99
 
 # Checks for library functions
 AC_FUNC_MALLOC
-AC_CHECK_FUNCS([memset setenv strdup strtoul open_memstream umount])
+AC_CHECK_FUNCS([memset setenv strdup strtoul open_memstream umount fcntl strptime])
 AM_CONDITIONAL([HAS_OPEN_MEMSTREAM], [test x$ac_vc_func_open_memstream = x"yes"])
+AM_CONDITIONAL([HAS_STRPTIME], [test x$ac_vc_func_strptime = x"yes"])
 
 AC_CHECK_LIB([confuse], [cfg_init], [], [ AC_MSG_ERROR([Could not find libconfuse]) ])
 AC_CHECK_LIB([archive], [archive_read_new], [], [ AC_MSG_ERROR([Could not find libarchive]) ])

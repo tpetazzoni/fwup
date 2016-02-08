@@ -31,7 +31,9 @@ SOURCES += \
     src/block_writer.c \
     src/fat_cache.c \
     src/mmc_osx.c \
-    src/mmc_linux.c
+    src/mmc_linux.c \
+    src/mmc_windows.c \
+    3rdparty/strptime.c
 
 osx {
     INCLUDEPATH += /usr/local/include /usr/local/opt/libarchive/include
